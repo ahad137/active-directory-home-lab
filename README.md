@@ -37,8 +37,7 @@ The goal of this project is to build and administer a small enterprise-style Win
 - Access-Based Enumeration (ABE)
 - Security policies
 - Service accounts
-- Windows security monitoring
-- SIEM integration
+
 
 ---
 
