@@ -1,142 +1,156 @@
-# Windows Server & Active Directory Home Lab
+# Active Directory Home Lab
 
-A hands-on Windows Server home lab focused on Active Directory administration, Group Policy, file services, access control, and Windows security.
+A hands-on Active Directory home lab built with Windows Server 2022 and a Windows 10 client to practice enterprise identity management, organizational structure, Group Policy, authentication, authorization, and Windows administration.
 
-This project is being built through practical implementation and testing in a virtualized lab environment.
+## Lab Environment
 
----
+- Windows Server 2022
+- Windows 10 Client
+- VMware Workstation
+- Active Directory Domain Services (AD DS)
+- DNS
+- Group Policy Management
+- Active Directory Users and Computers (ADUC)
 
-## 🖥️ Lab Environment
-
-| Component | Details |
-|---|---|
-| Server | Windows Server 2022 |
-| Client | Windows 10/11 |
-| Virtualization | VMware / Virtual Machine |
-| Directory Service | Active Directory Domain Services |
-| Management | Group Policy |
-| File Services | Windows File Server |
-| Resource Management | FSRM |
-
----
-
-## 🎯 Project Objectives
-
-The goal of this project is to build and administer a small enterprise-style Windows environment and gain practical experience with:
-
-- Active Directory Domain Services
-- Users, Groups and Organizational Units
-- Group Policy
-- Domain-joined Windows clients
-- Windows file sharing
-- NTFS and Share permissions
-- Permission inheritance
-- Effective permissions
-- Mapped network drives
-- File Server Resource Manager (FSRM)
-- Access-Based Enumeration (ABE)
-- Security policies
-- Service accounts
-
-
----
-
-# 🏗️ Lab Architecture
+## Domain
 
 ```text
-                    Windows Server 2022
-                   ┌─────────────────────┐
-                   │  Active Directory   │
-                   │  Domain Controller  │
-                   │  File Server        │
-                   │  GPO / FSRM         │
-                   └──────────┬──────────┘
-                              │
-                         Domain Network
-                              │
-                   ┌──────────▼──────────┐
-                   │   Windows Client    │
-                   │    Domain Joined    │
-                   └─────────────────────┘
+AHAD.local
+Active Directory Structure
+AHAD.local
+│
+├── Asia
+├── Europe
+├── USA
+│   ├── Computers
+│   ├── Server
+│   └── Users
+│       ├── HR
+│       ├── IT
+│       └── SALES
+│
+└── Domain Controllers
 
-1. Active Directory
-Installed Active Directory Domain Services
-Created the Active Directory domain
-Configured the Domain Controller
-Created Organizational Units
-Created domain users
-Created security groups
-Joined the Windows client to the domain
-2. Group Policy
-Created and configured Group Policy Objects
-Linked GPOs to Organizational Units
-Tested GPO application from the domain client
-3. File Sharing & Permissions
-Created shared folders
-Configured Share permissions
-Configured NTFS permissions
-Tested user access from the domain client
-Implemented mapped network drives
-Configured GPO-based drive mapping
-Tested mapped drive persistence after restart/logon
-4. File Server Resource Manager
-Implemented FSRM
-Configured and tested FSRM functionality
-🚧 In Progress
+The lab uses Organizational Units (OUs) to organize users, computers, and servers according to their role and department.
 
-The following areas are currently being implemented and tested:
+Users and Security Groups
 
-Advanced NTFS permissions
-Permission inheritance
-Effective permissions
-Access-Based Enumeration
-Security policies
-Service accounts
-🔜 Planned
+Created and managed:
 
-The lab will later be extended into a Windows security monitoring environment.
+Domain users
+Department-based user organization
+Security groups
+HR group
+User membership in security groups
+User and group management through ADUC
 
-Planned components:
+Example:
 
-Windows Event Logs
-Sysmon
-PowerShell logging
-Security event analysis
-Splunk
-Wazuh
-Detection rules
-Incident investigation
-📚 Documentation
+USA
+└── Users
+    ├── HR
+    ├── IT
+    └── SALES
+Domain-Joined Client
 
-Each major component of the lab will be documented with:
+A Windows 10 workstation was joined to the AHAD.local domain.
 
-Objective
-Configuration
-Implementation
-Testing
-Results
+Domain: AHAD.local
+Client: COMP01
+
+The client was successfully managed as a domain member through Active Directory.
+
+Group Policy
+
+Multiple Group Policy Objects (GPOs) were created and tested.
+
+Account Lockout Policy
+
+Configured account lockout settings to control repeated failed authentication attempts.
+
+Password Policy
+
+Configured domain password-related security settings.
+
+Desktop Wallpaper
+
+Configured a centralized desktop wallpaper policy through Group Policy.
+
+Drive Mapping
+
+Configured network drive mapping through Group Policy.
+
+Restrict Control Panel
+
+Configured a policy to restrict access to Control Panel.
+
+User Rights Assignment
+
+Configured user rights policies, including logon restrictions.
+
+Example:
+
+Deny Log on Locally
+        ↓
+GG-HR
+
+This was used to understand how security groups can be incorporated into Windows user-rights policies.
+
+GPO Scope and Troubleshooting
+
+Practiced understanding the difference between:
+
+User Configuration
+Computer Configuration
+User OU placement
+Computer OU placement
+GPO linking
+Security Group membership
+Group Policy scope
+
+GPO application was tested using:
+
+gpupdate /force
+
+and verified using:
+
+gpresult /r
+Active Directory Administration
+
+Practical administration tasks included:
+
+Creating Organizational Units
+Creating users
+Creating security groups
+Organizing users by department
+Managing computer objects
+Joining a Windows client to the domain
+Managing Group Policy
+Testing policy application
+Troubleshooting GPO behavior
+Security Concepts Practiced
+
+This lab provided hands-on practice with:
+
+Authentication
+Authorization
+Security groups
+User rights
+Password policies
+Account lockout
+Access control
+Group Policy
+Domain administration
 Screenshots
 
-The purpose is to demonstrate practical implementation rather than simply completing tutorials.
+Screenshots in this repository document the actual configurations and tests performed during the lab.
 
-🔐 Security Focus
+Project Outcome
 
-The long-term goal is to connect Windows administration with security monitoring:
+This project provided practical experience administering a Windows Active Directory environment, including domain users, Organizational Units, security groups, domain-joined clients, Group Policy, and Windows security controls.
 
-Active Directory
-       ↓
-Windows Clients
-       ↓
-GPO / Permissions / File Services
-       ↓
-Windows Event Logs
-       ↓
-Sysmon
-       ↓
-Splunk / Wazuh
-       ↓
-Detection
-       ↓
-Investigation
-       ↓
-Incident Documentation
+Future Security Integration
+
+The Active Directory environment can later be used as a Windows enterprise environment for generating and investigating security telemetry through SIEM and EDR technologies.
+
+
