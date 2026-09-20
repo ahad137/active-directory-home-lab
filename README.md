@@ -100,13 +100,15 @@ GPO Scope and Troubleshooting
 
 Practiced understanding the difference between:
 
-User Configuration
-Computer Configuration
-User OU placement
-Computer OU placement
-GPO linking
-Security Group membership
-Group Policy scope
+## Users and Security Groups
+## Domain-Joined Client
+## Group Policy
+## GPO Scope and Troubleshooting
+## Active Directory Administration
+## Security Concepts Practiced
+## Screenshots
+## Project Outcome
+## Future Security Integration
 
 GPO application was tested using:
 
